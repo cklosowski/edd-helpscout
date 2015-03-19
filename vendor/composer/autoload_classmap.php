@@ -7,7 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'EDD_HelpScout\\AJAX' => $baseDir . '/includes/AJAX.php',
+    'EDD_HelpScout\\Action' => $baseDir . '/includes/Action.php',
+    'EDD_HelpScout\\Actions\\CustomerData' => $baseDir . '/includes/Actions/CustomerData.php',
+    'EDD_HelpScout\\Actions\\DeactivateSite' => $baseDir . '/includes/Actions/DeactivateSite.php',
+    'EDD_HelpScout\\Actions\\ResendReceipt' => $baseDir . '/includes/Actions/ResendReceipt.php',
     'EDD_HelpScout\\Admin' => $baseDir . '/includes/Admin.php',
     'EDD_HelpScout\\Endpoint' => $baseDir . '/includes/Endpoint.php',
     'EDD_HelpScout\\Request' => $baseDir . '/includes/Request.php',
+    'EDD_HelpScout\\RequestListener' => $baseDir . '/includes/RequestListener.php',
 );

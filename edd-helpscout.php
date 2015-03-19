@@ -73,38 +73,14 @@ class Plugin {
 			return;
 		}
 
-		// if this is a HelpScout Request, load the Endpoint class
-		if ( $this->is_helpscout_request() && ! is_admin() ) {
-			new Endpoint();
-		}
-
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			new Ajax();
-		} elseif( is_admin() ) {
+		if( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX  ) ) {
 			new Admin();
+		} else {
+			new RequestListener();
 		}
 	}
 
-	/**
-	 * Is this a request we should respond to?
-	 *
-	 * @return bool
-	 */
-	private function is_helpscout_request() {
 
-		$trigger = stristr( $_SERVER['REQUEST_URI'], '/edd-hs-api/customer-data.json' ) !== false;
-
-		if( ! $trigger && isset( $_SERVER['HTTP_X_HELPSCOUT_SIGNATURE'] ) ) {
-
-			$greedy = get_option( 'edd_hs_greedy_listening', 1 );
-
-			if( $greedy ) {
-				$trigger = true;
-			}
-		}
-
-		return (bool) apply_filters( 'edd_hs/is_helpscout_request', $trigger );
-	}
 
 }
 
